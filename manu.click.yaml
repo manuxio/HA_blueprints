@@ -48,16 +48,16 @@ action:
 - choose:
   - conditions:
     - '{{ event == "clicked" }}'
-    sequence: !input 'button_single'
+    sequence: !input 'button_clicked'
   - conditions:
     - '{{ event == "double_clicked" }}'
-    sequence: !input 'button_double'
+    sequence: !input 'button_double_clicked'
   - conditions:
     - '{{ event == "pressed" }}'
-    sequence: !input 'button_short_long'
+    sequence: !input 'button_pressed'
   - conditions:
     - '{{ event == "clicked_pressed" }}'
-    sequence: !input 'button_long'
+    sequence: !input 'button_clicked_pressed'
   - conditions:
     - '{{ event == "released" }}'
     sequence: !input 'button_released'
