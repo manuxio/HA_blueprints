@@ -11,7 +11,7 @@ blueprint:
           domain: binary_sensor
 
     button_clicked:
-      name: Short click
+      name: Single click
       default: []
       selector:
         action: {}
@@ -21,12 +21,12 @@ blueprint:
       selector:
         action: {}
     button_pressed:
-      name: Short + Long click
+      name: Long click
       default: []
       selector:
         action: {}
     button_clicked_pressed:
-      name: Long click
+      name: Short + Long click
       default: []
       selector:
         action: {}
@@ -48,16 +48,16 @@ action:
 - choose:
   - conditions:
     - '{{ event == "clicked" }}'
-    sequence: !input 'button_single'
+    sequence: !input 'button_clicked'
   - conditions:
     - '{{ event == "double_clicked" }}'
-    sequence: !input 'button_double'
+    sequence: !input 'button_double_clicked'
   - conditions:
     - '{{ event == "pressed" }}'
-    sequence: !input 'button_short_long'
+    sequence: !input 'button_pressed'
   - conditions:
     - '{{ event == "clicked_pressed" }}'
-    sequence: !input 'button_long'
+    sequence: !input 'button_clicked_pressed'
   - conditions:
     - '{{ event == "released" }}'
     sequence: !input 'button_released'
