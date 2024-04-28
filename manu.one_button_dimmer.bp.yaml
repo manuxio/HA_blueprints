@@ -1,0 +1,40 @@
+blueprint:
+  name: ESPHOME MANU.ONE_BUTTON_DIMMER EVENT
+  description: Control Events From NODE-RED
+  domain: automation
+  input:
+    button:
+      name: Switch
+      description: Which Binary Sensor to use?
+      selector:
+        entity:
+          domain: binary_sensor
+
+    on_dim:
+      name: What to do when dimmer is > 0
+      default: []
+      selector:
+        action: {}
+    on_shutdown:
+      name: What to do when dimmer is 0
+      default: []
+      selector:
+        action: {}
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: event
+  event_type: "manu.one_button_dimmer"
+  event_data:
+    button: !input 'button'
+action:
+- variables:
+    brightness: '{{ trigger.event.data.payload }}'
+    interval: '{{ trigger.event.data.interval }}'
+- choose:
+  - conditions:
+    - '{{ brightness > 0 }}'
+    sequence: !input 'on_dim'
+  - conditions:
+    - '{{ brightness == 0 }}'
+    sequence: !input 'on_shutdown'
