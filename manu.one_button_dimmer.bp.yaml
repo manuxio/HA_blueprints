@@ -30,7 +30,7 @@ trigger:
 action:
 - variables:
     brightness: '{{ trigger.event.data.payload | interval}}'
-    interval: '{{ trigger.event.data.interval | float}}'
+    transition: '{{ trigger.event.data.interval | float}}'
 - choose:
   - conditions:
     - '{{ brightness > 0 }}'
