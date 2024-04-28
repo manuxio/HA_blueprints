@@ -29,8 +29,8 @@ trigger:
     button: !input 'button'
 action:
 - variables:
-    brightness: '{{ trigger.event.data.payload }}'
-    interval: '{{ trigger.event.data.interval }}'
+    brightness: '{{ trigger.event.data.payload | int}}'
+    interval: '{{ trigger.event.data.interval | int}}'
 - choose:
   - conditions:
     - '{{ brightness > 0 }}'
